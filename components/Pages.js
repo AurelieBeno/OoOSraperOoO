@@ -8,9 +8,13 @@ function useScrapes() {
   useEffect(function() {
     (async () => {
       getData()
-        .then(response =>
-          setScrapes(response.data.scrappedData)
-        )
+        .then(response => {
+          console.log(
+            "response from backend",
+            response.data.scrappedData
+          );
+          setScrapes(response.data.scrappedData);
+        })
         .catch(err => console.log(err));
     })();
   }, []);
@@ -18,13 +22,9 @@ function useScrapes() {
 }
 export default function Page({ children }) {
   const scrapes = useScrapes();
-
+  console.log("scrapes from PAGE", scrapes.length);
   return (
-    <ScrapeProvider
-      value={{
-        scrapes
-      }}
-    >
+    <ScrapeProvider value={scrapes}>
       <div className='page'>{children}</div>
     </ScrapeProvider>
   );
