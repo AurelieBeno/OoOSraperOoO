@@ -35,7 +35,7 @@ function errorHandler(err) {
 }
 
 function getData() {
-  return backendApi.get("/api").catch(errorHandler);
+  return backendApi.get("/api/data").catch(errorHandler);
 }
 
 /***/ }),
@@ -55,71 +55,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ScrapeContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ScrapeContext */ "./components/ScrapeContext.js");
 var _jsxFileName = "C:\\Users\\Aurelie\\Desktop\\code\\apresBootcamp\\web-crapping\\mediumScrap\\frontend\\components\\Data.js";
 
- // import { Link } from "react-dom";
 
 
 function Data() {
-  var scrapes = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_ScrapeContext__WEBPACK_IMPORTED_MODULE_1__["ScrapeContext"]);
-  console.log("hello data data.js", scrapes);
+  var scrapeData = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_ScrapeContext__WEBPACK_IMPORTED_MODULE_1__["ScrapeContext"]);
+  console.log(scrapeData);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 8
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 9
     },
     __self: this
-  }, "Your Data"), scrapes.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    },
-    __self: this
-  }, scrapes.map(function (item, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: i,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 15
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 16
-      },
-      __self: this
-    }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: item.image,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 17
-      },
-      __self: this
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      },
-      __self: this
-    }, " ", item.title, " "));
-  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    },
-    __self: this
-  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 27
-    },
-    __self: this
-  }, "PAs de donn\xE9e")));
+  }, "Your Data"), scrapeData.hey);
 }
 
 /***/ }),
@@ -166,8 +119,7 @@ function useScrapes() {
           switch (_context.prev = _context.next) {
             case 0:
               Object(_apis__WEBPACK_IMPORTED_MODULE_5__["getData"])().then(function (response) {
-                console.log("response from backend", response.data.scrappedData);
-                setScrapes(response.data.scrappedData);
+                return setScrapes(response.data.scrappedData);
               }).catch(function (err) {
                 return console.log(err);
               });
@@ -186,12 +138,13 @@ function useScrapes() {
 function Page(_ref2) {
   var children = _ref2.children;
   var scrapes = useScrapes();
-  console.log("scrapes from PAGE", scrapes.length);
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_ScrapeContext__WEBPACK_IMPORTED_MODULE_4__["ScrapeProvider"], {
-    value: scrapes,
+    value: {
+      scrapes: scrapes
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 23
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
