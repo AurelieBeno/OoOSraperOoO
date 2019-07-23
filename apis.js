@@ -25,5 +25,8 @@ function errorHandler(err) {
 }
 
 export function getData() {
+  return backendApi.get("/api/").catch(errorHandler);
+}
+export function getNewPost() {
   return backendApi.get("/api/data").catch(errorHandler);
 }
