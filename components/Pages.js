@@ -4,13 +4,13 @@ import { getData } from "../apis";
 
 function useScrapes() {
   const [scrapes, setScrapes] = useState({});
-
   useEffect(function() {
     (async () => {
       getData()
-        .then(response =>
-          setScrapes(response.data.scrappedData)
-        )
+        .then(response => {
+          console.log(response.data.scrappedData);
+          setScrapes(response.data.scrappedData);
+        })
         .catch(err => console.log(err));
     })();
   }, []);
